@@ -1,5 +1,4 @@
 ﻿using SnakeLadder.Core.Contract;
-using SnakeLadder.Core.Models;
 using SnakeLadder.Domain;
 using SnakeLadder.Domain.Models;
 

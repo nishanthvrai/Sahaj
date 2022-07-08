@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeLadder.Domain", "..\Sn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeLadder.Domain.Test", "..\SnakeLadder.Domain.Test\SnakeLadder.Domain.Test.csproj", "{B3D1F8A7-A080-4056-9410-E1C73AA7ACA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeLadderService.Test", "..\SnakeLadderService.Test\SnakeLadderService.Test.csproj", "{FC7CE2CB-BA43-4D9E-BA72-2F0324238BB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B3D1F8A7-A080-4056-9410-E1C73AA7ACA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3D1F8A7-A080-4056-9410-E1C73AA7ACA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3D1F8A7-A080-4056-9410-E1C73AA7ACA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC7CE2CB-BA43-4D9E-BA72-2F0324238BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7CE2CB-BA43-4D9E-BA72-2F0324238BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7CE2CB-BA43-4D9E-BA72-2F0324238BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7CE2CB-BA43-4D9E-BA72-2F0324238BB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

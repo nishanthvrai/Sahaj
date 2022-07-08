@@ -83,7 +83,7 @@
             PlayerTurns.Max(x => x.DiceThrows.Where(d => d.IsSlide).Sum(s => (s.Step.StepFrom - s.Step.StepTo)))
             : 0;
 
-        private int[]? GetLongestTurn() => PlayerTurns.OrderByDescending(x=>x.DiceThrows.Count).FirstOrDefault()?.DiceThrows.Select(d=>d.ThrowValue).ToArray();
+        private int[]? GetLongestTurn() => PlayerTurns.OrderByDescending(x=>x.DiceThrows.Sum(x=>x.ThrowValue)).FirstOrDefault()?.DiceThrows.Select(d=>d.ThrowValue).ToArray();
 
         private int GetLandsOnSnake() => PlayerTurns.Count(x => x.DiceThrows.Any(d => d.IsSlide));
 

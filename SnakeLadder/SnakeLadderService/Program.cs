@@ -1,4 +1,6 @@
+using FluentValidation.AspNetCore;
 using SnakeLadderService.Extensions;
+using SnakeLadderService.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
+
+//Add Fluent validation
+builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SnakeLadderGameRequestValidator>());
+
 
 var app = builder.Build();
 

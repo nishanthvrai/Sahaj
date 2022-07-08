@@ -325,7 +325,7 @@ namespace SnakeLadder.Domain.Test.Models
             playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 35),
-                CreateDiceThrow(6, null, 41),
+                CreateDiceThrow(6, null, 41), //?
                 CreateDiceThrow(1, new LadderStep(){ StepFrom = 42, StepTo = 63 }, 63) // Close call
             }, 63, 29));
 

@@ -2,15 +2,15 @@
 {
     public class DiceThrow
     {
-        public int ThrowValue { get; set; }
+        public int ThrowValue { get; private set; }
 
-        public bool IsSlide { get; set; }
+        public bool IsSlide { get; private set; }
 
-        public bool IsClimb { get; set; }
+        public bool IsClimb { get; private set; }
 
-        public int LandedPosition { get; set; }
+        public int LandedPosition { get; private set; }
 
-        public Step? Step { get; set; }
+        public Step? Step { get; private set; }
 
         public void InsertDiceValue(int throwValue, Step? step, int landedPosition)
         {

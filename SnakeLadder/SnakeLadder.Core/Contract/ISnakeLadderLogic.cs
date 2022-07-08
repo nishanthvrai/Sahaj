@@ -1,5 +1,4 @@
-﻿using SnakeLadder.Core.Models;
-using SnakeLadder.Domain.Models;
+﻿using SnakeLadder.Domain.Models;
 
 namespace SnakeLadder.Core.Contract
 {

@@ -3,11 +3,11 @@
     internal class PlayersLobby
     {
         private readonly int capacity;
+        private int activePlayer = -1;
 
         public List<Player> Players { get; private set; } = new List<Player>();
 
-        private int activePlayer = -1;
-
+        
         public PlayersLobby(int capacity)
         {
             this.capacity = capacity;
