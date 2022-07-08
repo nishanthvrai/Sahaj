@@ -38,7 +38,7 @@
 
                 player.CurrentPosition = UpdateDiceThrowDetailsAndReturnNewPosition(throwValue);
 
-                if (throwValue == Constants.LuckyThrow) // Lucky throw
+                if (throwValue == Constants.LuckyThrow && i != diceThrows.Length - 1) // Lucky throw or last throw
                     continue;
                 else
                 {

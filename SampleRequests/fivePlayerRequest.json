@@ -1,0 +1,10 @@
+{
+  "numberOfPlayers": 5,
+  "diceThrows": [
+    1, 1, 1, 1, 6, 6, 1,
+    1, 1, 1, 1, 4
+
+  ],
+  "optionalSnakeStepsOverrides": null,
+  "optionalLadderStepsOverrides": null
+}

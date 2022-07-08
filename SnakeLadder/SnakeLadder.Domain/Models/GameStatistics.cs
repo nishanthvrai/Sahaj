@@ -10,9 +10,10 @@
         {
             this.PlayerStatistics = playerStatistics;
             var favoritePlayer = playerStatistics
-                .OrderBy(o=> o.MinimumLuckyRolls).FirstOrDefault();
+                .OrderBy(o=> o.MinimumNumberOfRolls)
+                .FirstOrDefault();
 
-            GameStatus = $"Person {favoritePlayer?.PlayerName} is a hot favorite on the game with {favoritePlayer?.MinimumNumberOfRolls} best rolls";
+            GameStatus = $"{favoritePlayer?.PlayerName} is a hot favorite on the game with best {favoritePlayer?.MinimumNumberOfRolls} rolls.";
         }
 
     }

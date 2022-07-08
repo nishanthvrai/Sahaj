@@ -1,0 +1,18 @@
+{
+  "numberOfPlayers": 1,
+  "diceThrows": [
+    1, 4
+  ],
+  "optionalSnakeStepsOverrides": [
+    {
+      "stepFrom": 97,
+      "stepTo": 2
+    }
+  ],
+  "optionalLadderStepsOverrides": [
+    {
+      "stepFrom": 1,
+      "stepTo": 96
+    }
+  ]
+}
