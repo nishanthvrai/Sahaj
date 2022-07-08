@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Banking.Core/bin/Debug/net6.0
+/Banking.Core/obj
+/Banking.Domain/bin/Debug/net6.0
+/Banking.Domain/obj
+/BankingService/.vs/BankingService
+/BankingService/bin/Debug/net6.0
+/BankingService/obj/Debug/net6.0
+/BankingService/obj
+/SnakeLadder/SnakeLadder.Core/bin/Debug/net6.0
+/SnakeLadder/SnakeLadder.Core/obj
+/SnakeLadder/SnakeLadder.Domain/bin/Debug/net6.0
+/SnakeLadder/SnakeLadder.Domain/obj
+/SnakeLadder/SnakeLadder.Domain.Test/bin/Debug/net6.0
+/SnakeLadder/SnakeLadder.Domain.Test/obj
+/SnakeLadder/SnakeLadderService/.vs/SnakeLadderService/v17
+/SnakeLadder/SnakeLadderService/bin/Debug/net6.0/ref/SnakeLadderService.dll
+/SnakeLadder/SnakeLadderService/bin/Debug/net6.0
+/SnakeLadder/SnakeLadderService/obj
+/BankingService
+/Banking.Domain
+/Banking.Core
