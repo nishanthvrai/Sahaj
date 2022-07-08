@@ -7,7 +7,7 @@ namespace SnakeLadderService.Test.Validators
 {
     internal class SnakeLadderGameRequestValidatorTest
     {
-        private readonly SnakeLadderGameRequestValidator snakeLadderGameRequestValidator = new SnakeLadderGameRequestValidator();
+        private readonly SnakeLadderGameRequestValidator snakeLadderGameRequestValidator = new();
 
         [TestCase(0)]
         [TestCase(7)]
@@ -59,7 +59,7 @@ namespace SnakeLadderService.Test.Validators
         public void SnakeLadderGameRequest_EmptyDiceThrows_ThrowException()
         {
             //Arrange 
-            var snakeLadderGameRequest = new SnakeLadderGameRequest() { DiceThrows = new int[] { } };
+            var snakeLadderGameRequest = new SnakeLadderGameRequest() { DiceThrows = System.Array.Empty<int>() };
 
             //Act
             var result = snakeLadderGameRequestValidator.TestValidate(snakeLadderGameRequest);

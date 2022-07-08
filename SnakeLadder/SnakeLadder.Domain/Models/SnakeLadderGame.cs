@@ -7,7 +7,7 @@
         private readonly PlayersLobby playerLobby;
 
         private Player? player = null;
-        private PlayerTurn playerTurn = new PlayerTurn();
+        private PlayerTurn playerTurn = new();
 
         public SnakeLadderGame(int numberOfPlayers, IEnumerable<SnakeStep> snakeSteps, IEnumerable<LadderStep> ladderSteps)
         {
@@ -89,8 +89,10 @@
         {
             player = playerLobby.GetNextPlayer();
 
-            playerTurn = new PlayerTurn();
-            playerTurn.PreviousTurnPosition = player.CurrentPosition;
+            playerTurn = new PlayerTurn
+            {
+                PreviousTurnPosition = player.CurrentPosition
+            };
         }
     }
 }

@@ -13,8 +13,10 @@ namespace SnakeLadder.Domain.Test.Models
             //Arrange
             var expectedMinimumNumberOfRolls = 7;
 
-            var player = new Player(byte.MaxValue);
-            player.CurrentPosition = 0;
+            var player = new Player(byte.MaxValue)
+            {
+                CurrentPosition = 0
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -29,11 +31,11 @@ namespace SnakeLadder.Domain.Test.Models
         {
             //Arrange
             var expectedMinimumNumberOfRolls = 4;
-
-            var playerTurns = new List<PlayerTurn>();
-            
-            var player = new Player(byte.MaxValue);
-            player.CurrentPosition = 63;
+           
+            var player = new Player(byte.MaxValue)
+            {
+                CurrentPosition = 63
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -48,32 +50,35 @@ namespace SnakeLadder.Domain.Test.Models
         {
             //Arrange
             int expectedMinimumAmountOfClimbs = (25 - 4) + (49 - 33) + (69 - 50) + (81 - 62);
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 31),
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 33, StepTo = 49 }, 49)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(1, new LadderStep(){ StepFrom = 50, StepTo = 69 }, 69)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 75),
                 CreateDiceThrow(1, new LadderStep(){ StepFrom = 62, StepTo = 81 }, 81)
-            }));
-           
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            })
+            };
+
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -89,42 +94,45 @@ namespace SnakeLadder.Domain.Test.Models
             //Arrange
             int expectedMinimumAmountOfSlides = (27 - 5) + (54 - 31) + (54 - 31);
 
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 27, StepTo = 5 }, 5)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 11),
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 13, StepTo = 46 }, 46)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 52),
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 54, StepTo = 31 }, 31)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 33, StepTo = 49 }, 49)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(5, new SnakeStep(){ StepFrom = 54, StepTo = 31 }, 31)
-            }));
-            
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            })
+            };
+
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -138,35 +146,38 @@ namespace SnakeLadder.Domain.Test.Models
         public void GenerateGameStatistic_ValidateBiggestClimbInASingleTurn_ExpectedBiggestClimbInASingleTurnMatch()
         {
             //Arrange
-            int expectedBiggestClimbInASingleTurn = (46-13);
+            int expectedBiggestClimbInASingleTurn = (46 - 13);
 
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 27, StepTo = 5 }, 5)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 11),
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 13, StepTo = 46 }, 46)
-            }));
-           
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            }),
+
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 52),
                 CreateDiceThrow(6, null, 58),
                 CreateDiceThrow(4, new LadderStep(){ StepFrom = 62, StepTo = 81 }, 81)
-            }));
+            })
+            };
 
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -182,33 +193,36 @@ namespace SnakeLadder.Domain.Test.Models
             //Arrange
             int expectedBiggestSlideInASingleTurn = (27 - 5);
 
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 27, StepTo = 5 }, 5)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 11),
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 13, StepTo = 46 }, 46)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 52),
                 CreateDiceThrow(6, null, 58),
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 66, StepTo = 45 }, 45)
-            }));
-          
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            })
+            };
+
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -224,34 +238,37 @@ namespace SnakeLadder.Domain.Test.Models
             //Arrange
             var expectedLongestTurn = new int[] { 6, 6, 6, 2 };
 
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 27, StepTo = 5 }, 5)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 11),
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 13, StepTo = 46 }, 46)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 52),
                 CreateDiceThrow(6, null, 58),
                 CreateDiceThrow(6, null, 64),
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 66, StepTo = 45 }, 45)
-            }));
+            })
+            };
 
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -267,34 +284,37 @@ namespace SnakeLadder.Domain.Test.Models
             //Arrange
             var expectedMinimumUnluckyRolls = 2;
 
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 27, StepTo = 5 }, 5)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 11),
                 CreateDiceThrow(2, new LadderStep(){ StepFrom = 13, StepTo = 46 }, 46)
-            }));
+            }),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 52),
                 CreateDiceThrow(6, null, 58),
                 CreateDiceThrow(6, null, 64),
                 CreateDiceThrow(2, new SnakeStep(){ StepFrom = 66, StepTo = 45 }, 45)
-            }));
+            })
+            };
 
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -310,26 +330,26 @@ namespace SnakeLadder.Domain.Test.Models
             //Arrange
             var expectedMinimumLuckyRolls = 6;
 
-            var playerTurns = new List<PlayerTurn>();
-
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+            var playerTurns = new List<PlayerTurn>
+            {
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, new LadderStep() { StepFrom = 4, StepTo = 25 }, 25)
-            }, 25, 0));
+            }, 25, 0),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(4, null, 29) // Close call
-            }, 29, 25));
+            }, 29, 25),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 35),
                 CreateDiceThrow(6, null, 41), //?
                 CreateDiceThrow(1, new LadderStep(){ StepFrom = 42, StepTo = 63 }, 63) // Close call
-            }, 63, 29));
+            }, 63, 29),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 69),
                 CreateDiceThrow(6, null, 75),
@@ -337,15 +357,18 @@ namespace SnakeLadder.Domain.Test.Models
                 CreateDiceThrow(6, null, 87),
                 CreateDiceThrow(6, null, 93),
                 CreateDiceThrow(1, null, 94), // Close call               
-            }, 94, 63));
+            }, 94, 63),
 
-            playerTurns.Add(CreatePlayerTurn(new List<DiceThrow>()
+                CreatePlayerTurn(new List<DiceThrow>()
             {
                 CreateDiceThrow(6, null, 100)
-            }, 100, 94));
+            }, 100, 94)
+            };
 
-            var player = new Player(byte.MaxValue);
-            player.PlayerTurns = playerTurns;
+            var player = new Player(byte.MaxValue)
+            {
+                PlayerTurns = playerTurns
+            };
 
             //Act
             var playerStatistic = player.GenerateGameStatistic(Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
@@ -354,7 +377,7 @@ namespace SnakeLadder.Domain.Test.Models
             Assert.AreEqual(expectedMinimumLuckyRolls, playerStatistic.MinimumLuckyRolls);
 
         }
-      
+
         DiceThrow CreateDiceThrow(int turnValue, Step? step, int landPosition)
         {
             var diceThrow = new DiceThrow();

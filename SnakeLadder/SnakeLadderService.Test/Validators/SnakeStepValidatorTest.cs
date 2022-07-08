@@ -8,7 +8,7 @@ namespace SnakeLadderService.Test.Validators
     internal class SnakeStepValidatorTest
     {
 
-        private readonly SnakeStepValidator snakeStepValidator = new SnakeStepValidator();
+        private readonly SnakeStepValidator snakeStepValidator = new();
 
         [TestCase(0)]
         [TestCase(10)]
