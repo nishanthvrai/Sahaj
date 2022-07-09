@@ -21,8 +21,8 @@ namespace SnakeLadder.Domain.Test.Models
 
             var expectedGameStatistic = new GameStatistics(new List<PlayerStatistic>()
             {
-                CreatePlayerStatistic(21,0,new int[] {6, 2}, 37, 0, 2, 4, 0, "Player 1"),
-                CreatePlayerStatistic(33,0,new int[] {6, 6, 1}, 52, 0, 2, 3, 0, "Player 2")
+                CreatePlayerStatistic(21,0,new int[] {6, 2}, 37, 0, 2, 4, 0, "Player 1", 49),
+                CreatePlayerStatistic(33,0,new int[] {6, 6, 1}, 52, 0, 2, 3, 0, "Player 2", 69)
             });
 
             //Act
@@ -49,10 +49,10 @@ namespace SnakeLadder.Domain.Test.Models
 
             var expectedGameStatistic = new GameStatistics(new List<PlayerStatistic>()
             {
-                CreatePlayerStatistic(0,0,new int[] {2}, 0, 0, 0, 6, 0, "Player 1"),
-                CreatePlayerStatistic(0,0,new int[] {2}, 0, 0, 0, 6, 0, "Player 2"),
-                CreatePlayerStatistic(0,0,new int[] {2}, 0, 0, 0, 6, 0, "Player 3"),
-                CreatePlayerStatistic(21,0,new int[] {6, 2}, (21+16+19+18) , 0, 4, 2, 0, "Player 4")
+                CreatePlayerStatistic(0,0,new int[] {2}, 0, 0, 0, 6, 0, "Player 1", 5),
+                CreatePlayerStatistic(0,0,new int[] {2}, 0, 0, 0, 6, 0, "Player 2", 5),
+                CreatePlayerStatistic(0,0,new int[] {2}, 0, 0, 0, 6, 0, "Player 3", 5),
+                CreatePlayerStatistic(21,0,new int[] {6, 2}, (21+16+19+18) , 0, 4, 2, 0, "Player 4", 92)
             });
 
             //Act
@@ -64,6 +64,38 @@ namespace SnakeLadder.Domain.Test.Models
 
         }
 
+        [Test]
+        public void CalculateGameStats_Player4FinishedTheGame_Player4ShouldNotBeConsideredForNextThrows()
+        {
+            //Arrange
+            var noOfPlayers = 4;
+            var snakeLadderGame = new SnakeLadderGame(noOfPlayers, Constants.defaultSnakeSteps, Constants.defaultLadderSteps);
+            var diceThrows = new int[] {
+                1,1,1,4,
+                1,1,1,6,2,
+                1,1,1,1,
+                2,2,2,5,
+                1,1,1,6,2,
+                1, 1, 1,
+                4, 4, 4
+            };
+
+            var expectedGameStatistic = new GameStatistics(new List<PlayerStatistic>()
+            {
+                CreatePlayerStatistic(0,0,new int[] {4}, 0, 0, 0, 5, 0, "Player 1", 11),
+                CreatePlayerStatistic(0,0,new int[] {4}, 0, 0, 0, 5, 0, "Player 2", 11),
+                CreatePlayerStatistic(0,0,new int[] {4}, 0, 0, 0, 5, 0, "Player 3", 11),
+                CreatePlayerStatistic(21,0,new int[] {6, 2}, (21+16+19+18) , 0, 5, 0, 0, "Player 4", 100)
+            });
+
+            //Act
+            var gameStatistic = snakeLadderGame.CalculateGameStats(diceThrows);
+
+
+            //Assert
+            AssertGameStatisticsAreEqual(expectedGameStatistic, gameStatistic);
+
+        }
 
         void AssertGameStatisticsAreEqual(GameStatistics expected, GameStatistics actual)
         {
@@ -93,7 +125,8 @@ namespace SnakeLadder.Domain.Test.Models
             int minimumLuckyRolls,
             int minimumNumberOfRolls,
             int minimumUnluckyRolls,
-            string playerName
+            string playerName,
+            int gamePosition
             )
         {
             return new PlayerStatistic()
@@ -106,7 +139,8 @@ namespace SnakeLadder.Domain.Test.Models
                 MinimumLuckyRolls = minimumLuckyRolls,
                 MinimumNumberOfRolls = minimumNumberOfRolls,
                 MinimumUnluckyRolls = minimumUnluckyRolls,
-                PlayerName = playerName
+                PlayerName = playerName,
+                GamePosition = gamePosition
             };
         }
     }

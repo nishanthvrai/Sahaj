@@ -26,6 +26,7 @@
             return new PlayerStatistic()
             {
                 PlayerName = Name,
+                GamePosition = CurrentPosition,
                 MinimumNumberOfRolls = GetMinimumNoRolesToWin(snakes, ladders),
                 MinimumAmountOfClimbs = GetMinimumNumerOfClimbs(),
                 MinimumAmountOfSlides = GetMinimumNumerOfSlides(),

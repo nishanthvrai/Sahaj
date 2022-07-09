@@ -51,5 +51,51 @@ namespace SnakeLadder.Domain.Test.Models
             Assert.AreEqual(expectedPlayerId, player.Id);
         }
 
+
+        [Test]
+        public void GetNextPlayer_DoNotReturnThePlayerWhoFinishedTheGame_PlayerWhoFinishedTheGameIsSkipped()
+        {
+            //Arrange
+            int expectedPlayerId = 3;
+            var playersLobby = new PlayersLobby(3);
+
+            // Act
+            var player1 = playersLobby.GetNextPlayer();
+            player1.CurrentPosition = 100;
+
+            var player2 = playersLobby.GetNextPlayer();
+            player2.CurrentPosition = 100;
+
+            var player3 = playersLobby.GetNextPlayer();
+
+            var nextPlayer = playersLobby.GetNextPlayer();
+
+            //Assert
+            Assert.AreEqual(expectedPlayerId, nextPlayer.Id);
+        }
+
+        [Test]
+        public void GetNextPlayer_Player3ShouldNotBeReturnedAfterWin_Player3IsNotReturnedAfterFinishingTheGame()
+        {
+            //Arrange
+            int expectedPlayerId = 1;
+            var playersLobby = new PlayersLobby(3);
+
+            // Act
+            playersLobby.GetNextPlayer();
+            playersLobby.GetNextPlayer();
+
+            var player3 = playersLobby.GetNextPlayer();
+            player3.CurrentPosition = 100;
+
+            playersLobby.GetNextPlayer();
+            playersLobby.GetNextPlayer();
+
+            var player = playersLobby.GetNextPlayer();
+
+            //Assert
+            Assert.AreEqual(expectedPlayerId, player.Id);
+        }
+
     }
 }

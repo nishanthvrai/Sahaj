@@ -7,7 +7,7 @@
 
         public List<Player> Players { get; private set; } = new List<Player>();
 
-        
+
         public PlayersLobby(int capacity)
         {
             this.capacity = capacity;
@@ -22,13 +22,30 @@
             }
         }
 
-        public Player GetNextPlayer()
+        public Player? GetNextPlayer()
         {
-            if(activePlayer == -1 || activePlayer == Players.Count)
+            if (activePlayer == -1 || activePlayer == Players.Count)
             {
                 activePlayer = 0;
             }
-            return Players[activePlayer++];
+
+            var possibleNextPlayerIndex = activePlayer;
+            do
+            {
+                if (Players[possibleNextPlayerIndex].CurrentPosition != 100)
+                {
+                    activePlayer = possibleNextPlayerIndex;
+                    return Players[activePlayer++];
+                }
+                else
+                { 
+                    possibleNextPlayerIndex++;
+                    possibleNextPlayerIndex = (possibleNextPlayerIndex == this.capacity)? 0 : possibleNextPlayerIndex;
+                }
+
+            } while (possibleNextPlayerIndex != activePlayer);
+
+            return default;
         }
 
     }

@@ -34,11 +34,14 @@
 
             for (int i = 0; i < diceThrows.Length; i++)
             {
+                if (player == null) // Invalid throws. 
+                    break;
+
                 var throwValue = diceThrows[i];
 
                 player.CurrentPosition = UpdateDiceThrowDetailsAndReturnNewPosition(throwValue);
 
-                if (throwValue == Constants.LuckyThrow && i != diceThrows.Length - 1) // Lucky throw or last throw
+                if (throwValue == Constants.LuckyThrow && (IsPlayerFinishedGame() == false || IsGameLastThrow(i, diceThrows.Length) == false))
                     continue;
                 else
                 {
@@ -47,10 +50,11 @@
                 }
             }
         }
-
+    
         private int UpdateDiceThrowDetailsAndReturnNewPosition(int throwValue)
         {
             var possibleNextPosition = (player.CurrentPosition + throwValue);
+            possibleNextPosition = (possibleNextPosition > 100)? 100: possibleNextPosition;
 
             var diceThrow = new DiceThrow();
             playerTurn.DiceThrows.Add(diceThrow);
@@ -72,7 +76,7 @@
                 return luckyLadder.StepTo;
             }
 
-            // Normal dude
+            // Normal flow
             diceThrow.InsertDiceValue(throwValue, null, possibleNextPosition);
             return possibleNextPosition;
         }
@@ -84,6 +88,10 @@
             playerTurn.Position = player.CurrentPosition;
             player?.PlayerTurns.Add(playerTurn);
         }
+
+        private bool IsPlayerFinishedGame() => player.CurrentPosition == 100;
+
+        private bool IsGameLastThrow(int throwIndex, int length) => throwIndex == length - 1;
 
         private void SetNextPlayerActiveAndCreateNewTurn()
         {

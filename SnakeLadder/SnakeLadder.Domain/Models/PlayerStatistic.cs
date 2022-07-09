@@ -3,6 +3,7 @@
     public class PlayerStatistic
     {
         public string PlayerName { get; set; }
+        public int GamePosition { get; set; }
         public int MinimumNumberOfRolls { get; set; }   
         public int MinimumAmountOfClimbs { get; set; }
         public int MinimumAmountOfSlides { get; set; }
