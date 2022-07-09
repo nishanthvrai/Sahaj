@@ -97,6 +97,9 @@
         {
             player = playerLobby.GetNextPlayer();
 
+            if (player == null)
+                return;
+
             playerTurn = new PlayerTurn
             {
                 PreviousTurnPosition = player.CurrentPosition
