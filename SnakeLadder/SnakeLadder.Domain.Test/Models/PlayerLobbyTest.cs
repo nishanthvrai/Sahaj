@@ -97,5 +97,25 @@ namespace SnakeLadder.Domain.Test.Models
             Assert.AreEqual(expectedPlayerId, player.Id);
         }
 
+        [Test]
+        public void GetNextPlayer_ReturnNullWhenAllThePlayersFinishGame_ReturnNullForNextPlayer()
+        {
+            //Arrange
+            Player? expectedPlayer = null;
+            var playersLobby = new PlayersLobby(2);
+
+            // Act
+            var player1 = playersLobby.GetNextPlayer();
+            player1.CurrentPosition = 100;
+           
+            var player2 = playersLobby.GetNextPlayer();
+            player2.CurrentPosition = 100;
+
+            var player = playersLobby.GetNextPlayer();
+
+            //Assert
+            Assert.AreEqual(expectedPlayer, player);
+        }
+
     }
 }
